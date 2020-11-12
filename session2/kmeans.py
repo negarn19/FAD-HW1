@@ -4,19 +4,11 @@ import matplotlib.pyplot as plt
 
 # read the image
 img_path = "C:/Negar/Computer_vision/session1/8cef236c1c21c4.jpg"  # r" "
-
 img = cv.imread(img_path)
 
 
 # convert to RGB
 img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-
-
-#img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-
-
-
-
 
 pixel_value = img.reshape((-1, 1))
 
@@ -27,9 +19,6 @@ print(pixel_value.shape)
 criteria = (cv.TERM_CRITERIA_EPS + cv.TermCriteria_MAX_ITER, 10, 0.2)
 
 k = 5
-
-
-
 
 _, labels, (centers) = cv.kmeans(pixel_value, k, None, criteria, 10, cv.KMEANS_RANDOM_CENTERS)
 
@@ -50,10 +39,8 @@ labels = labels.flatten()
 segmented_image = centers[labels.flatten()]
 
 
-
 # reshape back to the original image dimension
 segmented_image = segmented_image.reshape(img.shape)
-
 
 
 # show the image
@@ -68,4 +55,4 @@ cv.imwrite ('C:/Negar/Computer_vision/session2/kmeans_k=5.jpg', segmented_image)
 #segmented_image_mask [segmented_image_mask <= 128] = 0
 
 #cv.imshow("image mask" , segmented_image_mask)
-# cv.waitKey(0)
+cv.waitKey(0)
